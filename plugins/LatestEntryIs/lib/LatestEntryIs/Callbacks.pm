@@ -1,11 +1,10 @@
-package MT::LatestEntryIs::Callbacks;
+package LatestEntryIs::Callbacks;
 use strict;
-
-my $plugin = MT->component( 'LatestEntryIs' );
 
 sub _cb_tp_edit_entry {
     my ( $cb, $app, $param, $tmpl ) = @_;
     if ( my $blog = $app->blog ) {
+        my $plugin = MT->component( 'LatestEntryIs' );
         my $blog_id = $blog->id;
         my $scope = 'blog:' . $blog_id;
         return unless $plugin->get_config_value( 'is_active', $scope );

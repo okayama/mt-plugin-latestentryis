@@ -1,18 +1,14 @@
-package MT::LatestEntryIs::Tags;
+package LatestEntryIs::Tags;
 use strict;
-
-my $plugin = MT->component( 'LatestEntryIs' );
 
 sub _hdlr_latest_entry {
     my ( $ctx, $args, $cond ) = @_;
-    my $app = MT->instance;
     my $blog_id = $args->{ blog_id } || $ctx->stash( 'blog_id' );
-    my $tag = lc $ctx->stash( 'tag' );
-    my $class = $tag =~ /entry$/ ? 'entry' : 'page';
+    my $class = lc( $ctx->stash( 'tag' ) ) =~ /entry$/i ? 'entry' : 'page';
     my $entry = MT->model( 'entry' )->load( { blog_id => $blog_id,
                                               class => $class,
-                                            },
-                                            { 'sort' => 'authored_on',
+                                            }, {
+                                              'sort' => 'authored_on',
                                               direction => 'descend',
                                               limit => 1,
                                             }

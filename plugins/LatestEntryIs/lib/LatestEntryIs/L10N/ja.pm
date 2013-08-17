@@ -1,6 +1,6 @@
-package MT::LatestEntryIs::L10N::ja;
+package LatestEntryIs::L10N::ja;
 use strict;
-use base qw/ MT::LatestEntryIs::L10N MT::L10N MT::Plugin::L10N /;
+use base qw( LatestEntryIs::L10N MT::L10N MT::Plugin::L10N );
 use vars qw( %Lexicon );
 
 our %Lexicon = (
